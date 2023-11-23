@@ -17,7 +17,7 @@
 
         function fetchAll() {
             let TestDataClass = ncmb.DataStore(db);
-            TestDataClass..order("name", false) fetchAll()
+            TestDataClass.order("name", false).fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
@@ -29,6 +29,16 @@
             TestDataClass
                 .equalTo("name", name)
                 .fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
+        function searchLevel() {
+            let level = parseInt($("#level").val())
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass
+                .equalTo("level", level).fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
@@ -66,6 +76,7 @@
     <div id="button">
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
+        <button class="btn" onclick="searchLevel()">Level</button>
     </div>
     <div id="message">message area</div>
 </body>
