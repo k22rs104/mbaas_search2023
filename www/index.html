@@ -34,12 +34,12 @@
                 })
         }
 
-        function searchLevelLt() {
+        function searchageLt() {
 
-            let level = parseInt($("#level").val());
+            let age = parseInt($("#age").val());
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .lessThan("level", level)
+                .lessThan("age", age)
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
@@ -47,22 +47,22 @@
 
         }
 
-        function searchLevel() {
-            let level = parseInt($("#level").val());
+        function searchage() {
+            let age = parseInt($("#age").val());
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .equalTo("level", level)
+                .equalTo("age", age)
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
         }
 
-        function searchLevelGT() {
-            let level = parseInt($("#level").val(), 10);
+        function searchageGT() {
+            let age = parseInt($("#age").val(), 10);
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .greaterThan("level", level)
+                .greaterThan("age", age)
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
@@ -99,19 +99,19 @@
         <input id="age" type="number" placeholder="players age">
     </div>
     <div>
-        <label for="position">position:</label>
-        <input id="position" type="text" placeholder="players position">
-    </div>
-    <div>
         <label for="number">number:</label>
         <input id="number" type="number" placeholder="players number">
+    </div>
+    <div>
+        <label for="position">position:</label>
+        <input id="position" type="text" placeholder="players position">
     </div>
     <div id="button">
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button><br>
-        <button class="btn" onclick="searchLevelLt()">Level &lt;</button>
-        <button class="btn" onclick="searchLevel()">Level</button>
-        <button class="btn" onclick="searchLevelGT()">Level &gt</button>
+        <button class="btn" onclick="searchageLt()">age &lt;</button>
+        <button class="btn" onclick="searchage()">age</button>
+        <button class="btn" onclick="searchageGT()">age &gt</button>
     </div>
     <div id="message">message area</div>
 </body>
