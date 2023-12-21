@@ -1,131 +1,143 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'"
+        />
+        <script src="components/loader.js"></script>
+        <link rel="stylesheet" href="components/loader.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="keys.js"></script>
+        <script>
+            // NCMB アクセスの準備
+            let ncmb = new NCMB(appKey, clientKey);
+            // 本アプリで使うクラスの指定。const は定数の宣言。変更できない変数と思えば良い。
+            const db = "avi";
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-    <script src="components/loader.js"></script>
-    <link rel="stylesheet" href="components/loader.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="keys.js"></script>
-    <script>
-        // NCMB アクセスの準備
-        let ncmb = new NCMB(appKey, clientKey);
-        // 本アプリで使うクラスの指定。const は定数の宣言。変更できない変数と思えば良い。
-        const db = "avi";
-
-        function fetchAll() {
-            let TestDataClass = ncmb.DataStore(db);
-            TestDataClass.order("name", false).fetchAll()
-                .then(function(results) {
-                    showResults(results);
-                })
-        }
-
-        function searchName() {
-            let name = $("#name").val();
-            let TestDataClass = ncmb.DataStore(db);
-            TestDataClass
-                .equalTo("name", name)
-                .fetchAll()
-                .then(function(results) {
-                    showResults(results);
-                })
-        }
-
-        function searchnumber() {
-            let number = parseInt($("#number").val());
-            let TestDataClass = ncmb.DataStore(db);
-            TestDataClass
-                .equalTo("number", number)
-                .fetchAll()
-                .then(function(results) {
-                    showResults(results);
-                })
-        }
-
-        function searchageLt() {
-
-            let age = parseInt($("#age").val());
-            let TestDataClass = ncmb.DataStore(db);
-            TestDataClass
-                .lessThan("age", age)
-                .fetchAll()
-                .then(function(results) {
-                    showResults(results);
-                })
-
-        }
-
-        function searchage() {
-            let age = parseInt($("#age").val());
-            let TestDataClass = ncmb.DataStore(db);
-            TestDataClass
-                .equalTo("age", age)
-                .fetchAll()
-                .then(function(results) {
-                    showResults(results);
-                })
-        }
-
-        function searchageGT() {
-            let age = parseInt($("#age").val(), 10);
-            let TestDataClass = ncmb.DataStore(db);
-            TestDataClass
-                .greaterThan("age", age)
-                .fetchAll()
-                .then(function(results) {
-                    showResults(results);
-                })
-        }
-
-        function showResults(results) {
-            // テーブルのヘッダを生成
-            let msg = "<table><tr><th>name</th><th>age</th><th>number</th><th>position</th></tr>";
-            for (let i = 0; i < results.length; i++) {
-                // 各データを収めた表の列を生成
-                msg += "<tr>";
-                msg += "<td>" + results[i].name + "</td>";
-                msg += "<td class='num'>" + results[i].age + "</td>";
-                msg += "<td class='num'>" + results[i].number + "</td>";
-                msg += "<td class='num'>" + results[i].position + "</td>";
-                msg += "</tr>";
+            function fetchAll() {
+                let TestDataClass = ncmb.DataStore(db);
+                TestDataClass.order("name", false).fetchAll()
+                    .then(function(results) {
+                        showResults(results);
+                    })
             }
-            // テーブルのテイラを生成
-            msg += "</table>";
-            $("#message").html(msg);
-        }
-    </script>
-</head>
 
-<body>
-    <h1>アビスパ福岡の選手検索</h1>
-    <div>
-        <label for="name">name:</label>
-        <input id="name" type="text" placeholder="players name">
-    </div>
-    <div>
-        <label for="age">age:</label>
-        <input id="age" type="number" placeholder="players age">
-    </div>
-    <div>
-        <label for="number">number:</label>
-        <input id="number" type="number" placeholder="players number">
-    </div>
-    <div>
-        <label for="position">position:</label>
-        <input id="position" type="text" placeholder="players position">
-    </div>
-    <div id="button">
-        <button class="btn" onclick="fetchAll()">Fetch All</button>
-        <button class="btn" onclick="searchName()">Name</button>
-        <button class="btn" onclick="searchnumber()">number</button><br>
-        <button class="btn" onclick="searchageLt()">age &lt;</button>
-        <button class="btn" onclick="searchage()">age</button>
-        <button class="btn" onclick="searchageGT()">age &gt</button>
-    </div>
-    <div id="message">message area</div>
-</body>
+            function searchName() {
+                let name = $("#name").val();
+                let TestDataClass = ncmb.DataStore(db);
+                TestDataClass
+                    .equalTo("name", name)
+                    .fetchAll()
+                    .then(function(results) {
+                        showResults(results);
+                    })
+            }
 
+            function searchnumber() {
+                let number = parseInt($("#number").val());
+                let TestDataClass = ncmb.DataStore(db);
+                TestDataClass
+                    .equalTo("number", number)
+                    .fetchAll()
+                    .then(function(results) {
+                        showResults(results);
+                    })
+            }
+
+            function searchageLt() {
+
+                let age = parseInt($("#age").val());
+                let TestDataClass = ncmb.DataStore(db);
+                TestDataClass
+                    .lessThan("age", age)
+                    .fetchAll()
+                    .then(function(results) {
+                        showResults(results);
+                    })
+
+            }
+
+            function searchage() {
+                let age = parseInt($("#age").val());
+                let TestDataClass = ncmb.DataStore(db);
+                TestDataClass
+                    .equalTo("age", age)
+                    .fetchAll()
+                    .then(function(results) {
+                        showResults(results);
+                    })
+            }
+
+            function searchageGT() {
+                let age = parseInt($("#age").val(), 10);
+                let TestDataClass = ncmb.DataStore(db);
+                TestDataClass
+                    .greaterThan("age", age)
+                    .fetchAll()
+                    .then(function(results) {
+                        showResults(results);
+                    })
+            }
+
+            function showResults(results) {
+                // テーブルのヘッダを生成
+                let msg = "<table><tr><th>name</th><th>age</th><th>number</th><th>position</th><th>nationality</th></tr>";
+                for (let i = 0; i < results.length; i++) {
+                    // 各データを収めた表の列を生成
+                    msg += "<tr>";
+                    msg += "<td>" + results[i].name + "</td>";
+                    msg += "<td class='num'>" + results[i].age + "</td>";
+                    msg += "<td class='num'>" + results[i].number + "</td>";
+                    msg += "<td>" + results[i].position + "</td>";
+                    msg += "<td>" + results[i].nationality + "</td>";
+                    msg += "</tr>";
+                }
+                // テーブルのテイラを生成
+                msg += "</table>";
+                $("#message").html(msg);
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>アビスパ福岡の選手検索</h1>
+        <div>
+            <label for="name">name:</label>
+            <input id="name" type="text" placeholder="players name" />
+        </div>
+        <div>
+            <label for="age">age:</label>
+            <input id="age" type="number" placeholder="players age" />
+        </div>
+        <div>
+            <label for="number">number:</label>
+            <input id="number" type="number" placeholder="players number" />
+        </div>
+        <div>
+            <label for="position">position:</label>
+            <input id="position" type="text" placeholder="players position" />
+        </div>
+        <div>
+            <label for="nationality">nationality:</label>
+            <input id="nationality" type="text" placeholder="players nationality" />
+        </div>
+
+        <div id="button">
+            <button class="btn" onclick="fetchAll()">Fetch All</button>
+            <button class="btn" onclick="searchName()">Name</button>
+            <button class="btn" onclick="searchnumber()">number</button><br />
+            <button class="btn" onclick="searchageLt()">age &lt;</button>
+            <button class="btn" onclick="searchage()">age</button>
+            <button class="btn" onclick="searchageGT()">age &gt</button><br />
+            <button class="btn" onclick="searchposition()">position</button>
+            <button class="btn" onclick="searchnationality()">nationality</button>
+        </div>
+        <div id="message">message area</div>
+    </body>
 </html>
