@@ -34,6 +34,17 @@
                 })
         }
 
+        function searchnumber() {
+            let number = parseInt($("#number").val());
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass
+                .equalTo("number", number)
+                .fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+        }
+
         function searchageLt() {
 
             let age = parseInt($("#age").val());
