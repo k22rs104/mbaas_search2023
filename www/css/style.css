@@ -31,11 +31,13 @@ input {
   border-radius: 10px;
   color: ;
   background-color: blue;
+  color: silver;
 }
 
 #message {
   border-style: solid;
   border-color: grey;
+  color: white;
 }
 
 table {
