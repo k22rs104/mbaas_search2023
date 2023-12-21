@@ -1,9 +1,9 @@
 /**/
 body {
-  background-color: aqua;
+  background-color: navy;
 }
 h1 {
-  background-color: yellow;
+  background-color: silver;
 }
 
 label {
@@ -11,6 +11,7 @@ label {
   float: left;
   text-align: right;
   width: 20%;
+  color: white;
 }
 
 input {
@@ -28,7 +29,7 @@ input {
   height: 4ex;
   width: 5em;
   border-radius: 10px;
-  color: white;
+  color: ;
   background-color: blue;
 }
 
@@ -39,6 +40,7 @@ input {
 
 table {
   border-collapse: collapse;
+  color: silver;
 }
 
 th, td {

@@ -86,7 +86,7 @@
             }
 
             function searchposition() {
-                let name = $("#position").val();
+                let position = $("#position").val();
                 let TestDataClass = ncmb.DataStore(db);
                 TestDataClass
                     .equalTo("position", position)
@@ -97,7 +97,7 @@
             }
 
             function searchnationality() {
-                let name = $("#nationality").val();
+                let nationality = $("#nationality").val();
                 let TestDataClass = ncmb.DataStore(db);
                 TestDataClass
                     .equalTo("nationality", nationality)
